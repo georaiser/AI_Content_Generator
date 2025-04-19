@@ -14,6 +14,7 @@ httpx==0.28.1
 idna==3.10
 jsonpatch==1.33
 jsonpointer==3.0.0
+langchain
 langchain-core==0.3.54
 langchain-groq==0.3.2
 langsmith==0.3.32
@@ -42,3 +43,4 @@ urllib3==2.4.0
 websocket-client==1.8.0
 wsproto==1.2.0
 zstandard==0.23.0
+uvicorn[standard]
