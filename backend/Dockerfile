@@ -1,6 +1,6 @@
-FROM python3.12
+FROM python:3.12-slim
 
-# Crear y establecer el directorio de trabajo
+# create and set working directory
 WORKDIR /backend
 
 # Copiar los archivos de dependencias
