@@ -4,5 +4,5 @@
 .env
 backend/venv/
 frontend/venv/
-notebooks/
+notebooks
 venv/
