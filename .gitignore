@@ -1,6 +1,7 @@
-.vscode/
-.devcontainer/
+.vscode
+.devcontainer
 *.pyc
 .env
-backend/venv/
-frontend/venv/
+backend/venv
+frontend/venv
+notebooks
