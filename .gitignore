@@ -2,7 +2,7 @@
 .devcontainer
 *.pyc
 .env
-backend/venv/
+backend/venv/*
 frontend/venv/
-notebooks*
-venv*
+notebooks/*
+venv/*
