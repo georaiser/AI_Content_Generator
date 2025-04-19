@@ -2,4 +2,5 @@
 .devcontainer/
 *.pyc
 .env
-venv
+backend/venv/
+frontend/venv/
