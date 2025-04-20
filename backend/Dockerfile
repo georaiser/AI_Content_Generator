@@ -1,5 +1,4 @@
-FROM python:3.11-slim
-
+FROM python:3.12-slim
 # create and set working directory
 WORKDIR /backend
 
