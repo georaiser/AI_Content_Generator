@@ -25,6 +25,52 @@ new_target_audience = None
 new_tone = None
 language = None
 
+############# PRACTICANDO ######################
+# x = st.slider("Select a value")
+# st.write(x, "squared is", x * x)
+####
+# with st.form("my_form"):
+#     text = st.text_area(
+#         "Enter text:",
+#         "What are the three key pieces of advice for learning how to code?",
+#     )
+#     submitted = st.form_submit_button("Submit")
+    # if not openai_api_key.startswith("sk-"):
+    #     st.warning("Please enter your OpenAI API key!", icon="⚠")
+    # if submitted and openai_api_key.startswith("sk-"):
+    #     generate_response(text)
+
+st.sidebar.header("Configuración")
+st.sidebar.table(
+    {
+        "URL del producto": st.text_input(
+            "Ingresa la URL del producto", placeholder="https://www.falabella.com.pe/"
+        ),
+        "Público objetivo": st.selectbox(
+            "Selecciona el público objetivo",
+            options=[
+                "Adultos",
+                "Niños",
+                "Adolescentes",
+                "Adultos mayores",
+                "Familias",
+            ],
+        ),
+        "Tono": st.selectbox(
+            "Selecciona el tono",
+            options=["Informativo", "Divertido", "Serio", "Persuasivo"],
+        ),
+        "Idioma": st.selectbox(
+            "Selecciona el idioma", options=["Español", "Inglés"]
+        ),
+    }
+)
+
+st.container()
+
+#################################################
+
+
 # TODO: Add a button to trigger content generation
 if st.button("Generar Guion"):
     if input_url and new_target_audience and new_tone and language:
