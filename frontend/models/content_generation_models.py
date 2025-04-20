@@ -1,14 +1,7 @@
-from pydantic import BaseModel
-
+from pydantic import BaseModel, HttpUrl
 
 class ContentGeneration(BaseModel):
-    url: str  # Example field for students to follow
-
-    # TODO: Add a field for the new target audience
-    new_target_audience: None
-
-    # TODO: Add a field for the new tone
-    new_tone: None
-
-    # TODO: Add a field for the language
-    language: None
+    url: HttpUrl
+    new_target_audience: str = "default_audience"
+    new_tone: str = "default_tone"
+    language: str = "default_language"
