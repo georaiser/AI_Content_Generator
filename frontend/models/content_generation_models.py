@@ -1,7 +1,7 @@
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel
 
 class ContentGeneration(BaseModel):
-    url: HttpUrl
-    new_target_audience: str = "default_audience"
-    new_tone: str = "default_tone"
-    language: str = "default_language"
+    url: str
+    new_target_audience: str
+    new_tone: str
+    language: str

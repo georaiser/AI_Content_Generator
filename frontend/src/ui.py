@@ -32,6 +32,8 @@ language = st.selectbox(
     "Idioma", options=["Español", "Inglés"]
 )
 
+print(language)
+
 st.sidebar.header("Content Generator")
 st.sidebar.table(
     {
@@ -53,6 +55,7 @@ if st.button("Generar contenido"):
             new_tone=new_tone,
             language=language
         )
+        
         # Call the compute_content function to generate the script
         refined_script = compute_content(payload, backend_url)
 
