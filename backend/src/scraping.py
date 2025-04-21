@@ -101,10 +101,10 @@ class FalabellaScraper:
         driver = self._get_selenium(url)
 
         product_data = {
-            "name": self.get_product_name(soup),
+            "title": self.get_product_name(soup),
             "price": self.get_product_price(soup),
             "image_links": self.get_image_links(driver),
-            "specifications": self.get_product_specifications(soup),
+            "description": self.get_product_specifications(soup),
             "additional_info": self.get_additional_info(soup),
             "available_sizes": self.get_available_sizes(driver),
         }

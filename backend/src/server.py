@@ -8,15 +8,14 @@ from src.scraping import FalabellaScraper
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# app = FastAPI(
-#     title="AI-Powered Text Generation with LLMs",
-#     description="""Create high-quality text content using advanced Large Language Models (LLMs).  
-#                   Generate textual descriptions, narratives, and insights from images and text inputs.  
-#                   Access the Streamlit interface at port 8501 for an interactive experience.""",
-#     version="0.1.0",
-# )
+app = FastAPI(
+    title="AI-Powered Text Generation with LLMs",
+    description="""Create high-quality text content using advanced Large Language Models (LLMs).  
+                  Generate textual descriptions, narratives, and insights from images and text inputs.  
+                  Access the Streamlit interface at port 8501 for an interactive experience.""",
+    version="0.1.0",
+)
 
-app = FastAPI()
 
 @app.get("/health")
 def health_check():
@@ -45,8 +44,8 @@ def generate_content(request: ContentGeneration):
         generator = ContentGenerator()
         content = generator.generate_content(
             metadata=metadata,
-            new_target_audience=request.target_audience,
-            new_tone=request.tone,
+            target_audience=request.target_audience,
+            tone=request.tone,
             language=request.language,
         )
 
