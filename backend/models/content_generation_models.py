@@ -9,7 +9,7 @@ class ToneGenerationScript(BaseModel):
 
 # Define the ContentGeneration class with fields for URL, target audience, tone, and language
 class ContentGeneration(BaseModel):
-    url: str = Field(..., description="URL del contenido original")
+    url: str
     target_audience: str = Field(..., description="Público objetivo para el contenido")
     tone: str = Field(..., description="Tono deseado para el contenido")
     language: str = Field(default="español", description="Idioma del contenido")

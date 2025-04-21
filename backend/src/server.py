@@ -45,7 +45,7 @@ def generate_content(request: ContentGeneration):
         content = generator.generate_content(
             metadata=metadata,
             target_audience=request.target_audience,
-            tone=request.new_tone,
+            tone=request.tone,
             language=request.language,
         )
 

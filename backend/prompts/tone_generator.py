@@ -17,8 +17,8 @@ GENERATE_REFINED_INFO = """
 Eres un experto en optimización de contenido para redes sociales. Tu tarea es refinar y mejorar un guion existente para reels de Instagram o TikTok, adaptándolo a una nueva audiencia y tono.
 
 Guion original: {previous_script}
-Nueva audiencia objetivo: {new_target_audience}
-Nuevo tono deseado: {new_tone}
+Nueva audiencia objetivo: {target_audience}
+Nuevo tono deseado: {tone}
 Idioma: {language}
 
 Proceso de refinamiento:
