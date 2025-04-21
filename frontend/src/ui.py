@@ -45,6 +45,7 @@ st.sidebar.table(
 # Create a button to generate content
 if st.button("Generar contenido"):
     if input_url and new_target_audience and new_tone and language:
+        backend_url = os.getenv("BACKEND_URL", "http://localhost:8004/content_generator")
         # Create a payload using the ContentGeneration model
         payload = ContentGeneration(
             url=input_url,
@@ -52,35 +53,26 @@ if st.button("Generar contenido"):
             new_tone=new_tone,
             language=language
         )
+        # Call the compute_content function to generate the script
+        refined_script = compute_content(payload, backend_url)
 
-        # Call the compute_content function to generate content
-        backend_url = os.getenv("BACKEND_URL", "http://backend:8004/content_generator")
-        result = compute_content(payload, backend_url)
-
-        # TODO: Call the compute_content function to generate the script
-        refined_script = None
-        
-    else:
-            # TODO: Show a warning if any input field is missing
-            st.warning("Por favor, completa todos los campos.")
-
-    # Display the generated content or error message
-    if "error" in result:
-        st.error(result["error"])
-    else:
-        st.success("Contenido generado exitosamente!")
-        st.write(result["script"])  ###
-        st.balloons()
-        # Display the generated script
+        # Display the generated script and add a download button
         st.header("Guion Finalizado")
-        st.text_area("Guion", result["script"], height=300)
-        # Add a download button for the generated script
+        if "error" in refined_script:
+            st.error(refined_script["error"])
+        else:
+            st.text_area("Script", refined_script["script"], height=300)
+            
+        import json
         st.download_button(
-            label="Descargar Guion",
-            data=result["script"],
-            file_name="guion.txt",
-            mime="text/plain",
+            label="Descargar Guion en JSON",
+            data=json.dumps(refined_script, ensure_ascii=False, indent=4),
+            file_name="guion.json",
+            mime="application/json"
         )
+    else:
+        # Show a warning if any input field is missing
+        st.warning("Por favor, completa todos los campos.")
 
 # Add a footer with the app's version
 st.markdown(
