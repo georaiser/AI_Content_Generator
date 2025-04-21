@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.9-slim
 
 # Crear y establecer el directorio de trabajo
 WORKDIR /frontend
