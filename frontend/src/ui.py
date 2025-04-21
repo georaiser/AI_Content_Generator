@@ -24,11 +24,11 @@ st.write(
 
 # Create input fields for URL, target audience, tone, and language
 input_url = st.text_input("URL del producto", placeholder="https://www.falabella.com/")
-new_target_audience = st.selectbox(
+target_audience = st.selectbox(
     "Público objetivo",
     options=["Adultos", "Niños", "Adolescentes", "Adultos mayores", "Familias"],
 )
-new_tone = st.selectbox(
+tone = st.selectbox(
     "Tono",
     options=["Informativo", "Divertido", "Serio", "Persuasivo"],
 )
@@ -42,21 +42,21 @@ st.sidebar.header("Content Generator")
 st.sidebar.table(
     {
         "URL del producto": input_url if input_url else "No ingresada",
-        "Público objetivo": new_target_audience if new_target_audience else "No seleccionado",
-        "Tono": new_tone if new_tone else "No seleccionado",
+        "Público objetivo": target_audience if target_audience else "No seleccionado",
+        "Tono": tone if tone else "No seleccionado",
         "Idioma": language if language else "No seleccionado",
     }
 )
 
 # Create a button to generate content
 if st.button("Generar contenido"):
-    if input_url and new_target_audience and new_tone and language:
+    if input_url and target_audience and tone and language:
         backend_url = os.getenv("BACKEND_URL", "http://backend:8004/content_generator")
         # Create a payload using the ContentGeneration model
         payload = ContentGeneration(
             url=input_url,
-            new_target_audience=new_target_audience,
-            new_tone=new_tone,
+            target_audience=target_audience,
+            tone=tone,
             language=language
         )
 

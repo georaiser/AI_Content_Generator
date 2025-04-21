@@ -27,8 +27,8 @@ def compute_content(payload: ContentGeneration, server_url: str):
         
         return {
             "url": payload.url,
-            "audience": payload.new_target_audience,
-            "tone": payload.new_tone,
+            "audience": payload.target_audience,
+            "tone": payload.tone,
             "language": payload.language,
             "script": generated_content.get("generated_content", "No content generated")
         }
@@ -38,8 +38,8 @@ def compute_content(payload: ContentGeneration, server_url: str):
         return {
             "error": f"Request failed: {str(e)}",
             "url": payload.url,
-            "audience": payload.new_target_audience,
-            "tone": payload.new_tone,
+            "audience": payload.target_audience,
+            "tone": payload.tone,
             "language": payload.language,
             "script": "Failed to generate content"
         }
