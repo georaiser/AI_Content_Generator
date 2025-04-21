@@ -7,6 +7,7 @@ from frontend.models.content_generation_models import ContentGeneration
 from frontend.src.generate_content import compute_content
 
 # PYTHONPATH=$(pwd)  API_URL=http://localhost:8000/content_generator streamlit run frontend/src/ui.py --server.port 8510
+# docker network inspect my_network
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
