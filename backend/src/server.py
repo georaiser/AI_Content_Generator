@@ -30,7 +30,7 @@ def generate_content(request: ContentGeneration):
 
         # Scrape metadata using FalabellaScraper
         scraper = FalabellaScraper()
-        metadata = scraper.scrape_product(request.url)
+        metadata = scraper.scrape(request.url)
 
         # Validate if metadata is valid
         if not metadata or not isinstance(metadata, dict):

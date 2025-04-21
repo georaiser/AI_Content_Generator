@@ -47,7 +47,7 @@ st.sidebar.table(
 # Create a button to generate content
 if st.button("Generar contenido"):
     if input_url and new_target_audience and new_tone and language:
-        backend_url = os.getenv("BACKEND_URL", "http://localhost:8004/content_generator")
+        backend_url = os.getenv("BACKEND_URL", "http://backend:8004/content_generator")
         # Create a payload using the ContentGeneration model
         payload = ContentGeneration(
             url=input_url,
