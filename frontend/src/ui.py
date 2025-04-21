@@ -3,8 +3,10 @@ from dotenv import load_dotenv
 import streamlit as st
 import logging
 import json
-from models.content_generation_models import ContentGeneration
-from src.generate_content import compute_content
+from frontend.models.content_generation_models import ContentGeneration
+from frontend.src.generate_content import compute_content
+
+# PYTHONPATH=$(pwd)  API_URL=http://localhost:8000/content_generator streamlit run frontend/src/ui.py --server.port 8510
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -51,7 +53,9 @@ st.sidebar.table(
 # Create a button to generate content
 if st.button("Generar contenido"):
     if input_url and target_audience and tone and language:
-        backend_url = os.getenv("BACKEND_URL", "http://backend:8004/content_generator")
+        #backend_url = os.getenv("BACKEND_URL", "http://backend:8004/content_generator")
+        backend_url = os.getenv("API_URL", "http://backend:8004/content_generator")  # Docker default
+
         # Create a payload using the ContentGeneration model
         payload = ContentGeneration(
             url=input_url,

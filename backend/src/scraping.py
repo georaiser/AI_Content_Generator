@@ -6,8 +6,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-from src.image_describer import ImageGridDescriber
+from backend.src.image_describer import ImageGridDescriber
 
+# uvicorn backend.src.server:app --reload --port 8000
 
 class FalabellaScraper:
         
@@ -103,7 +104,7 @@ class FalabellaScraper:
         product_data = {
             "title": self.get_product_name(soup),
             "price": self.get_product_price(soup),
-            #"image_links": self.get_image_links(driver),
+            "image_links": self.get_image_links(driver),
             "description": self.get_product_specifications(soup),
             "available_sizes": self.get_available_sizes(driver),
             "additional_info": self.get_additional_info(soup),
