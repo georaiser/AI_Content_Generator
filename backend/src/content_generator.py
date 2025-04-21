@@ -101,10 +101,11 @@ class ContentGenerator:
         # Log the generated text
         logger.info(f"generated_text: {generated_text}")
         # Apply the tone to the generated text
-        generated_text_tone = self.apply_tone(
-            generated_text["content"], target_audience, tone, language
-        )
-        # Log the generated text with tone
-        logger.info(f"generated_text_tone: {generated_text_tone}")
-        # Return the final generated text with tone
-        return generated_text_tone
+        # generated_text_tone = self.apply_tone(
+        #     generated_text["content"], target_audience, tone, language
+        # )
+        # # Log the generated text with tone
+        # logger.info(f"generated_text_tone: {generated_text_tone}")
+        # # Return the final generated text with tone
+        # return generated_text_tone
+        return generated_text
