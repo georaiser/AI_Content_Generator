@@ -1,16 +1,20 @@
 import os
 from dotenv import load_dotenv
 import streamlit as st
+import logging
+import json
 from models.content_generation_models import ContentGeneration
 from src.generate_content import compute_content
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 # Load environment variables from .env file
 load_dotenv()
-
 # Set the title of the Streamlit app
 st.title("AI-Powered Reel Content Generator")
-
 # Add a description for the app
 st.write(
     """
@@ -55,6 +59,9 @@ if st.button("Generar contenido"):
             new_tone=new_tone,
             language=language
         )
+
+        # Log the payload being sent to the backend
+        logger.info(f"Sending payload: {payload}")
         
         # Call the compute_content function to generate the script
         refined_script = compute_content(payload, backend_url)
@@ -66,7 +73,6 @@ if st.button("Generar contenido"):
         else:
             st.text_area("Script", refined_script["script"], height=300)
             
-        import json
         st.download_button(
             label="Descargar Guion en JSON",
             data=json.dumps(refined_script, ensure_ascii=False, indent=4),
