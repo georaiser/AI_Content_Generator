@@ -9,6 +9,11 @@ from models.content_generation_models import (
     ContentGenerationScript,
     ToneGenerationScript,
 )
+import logging
+
+# Configurar logs
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -65,7 +70,7 @@ class ContentGenerator:
         )
         return content_chain_invoke
 
-    def apply_tone(self, script, new_target_audience, new_tone, language):
+    def apply_tone(self, script, target_audience, tone, language):
         # Create the tone parser
         parser_tone = self.create_tone_parser()
         # Create the tone generation chain
@@ -74,8 +79,8 @@ class ContentGenerator:
             parser=parser_tone,
             input_variables=[
                 "previous_script",
-                "new_target_audience",
-                "new_tone",
+                "target_audience",
+                "tone",
                 "language",
             ],
         )
@@ -83,18 +88,23 @@ class ContentGenerator:
         chain_invoke = generation_chain.invoke(
             {
                 "previous_script": script,
-                "new_target_audience": new_target_audience,
-                "new_tone": new_tone,
+                "target_audience": target_audience,
+                "tone": tone,
                 "language": language,
             }
         )
         return chain_invoke
 
-    def generate_content(self, metadata, new_target_audience, new_tone, language):
+    def generate_content(self, metadata, target_audience, tone, language):
         # Generate the initial text
         generated_text = self.generate_text(metadata)
+        # Log the generated text
+        logger.info(f"generated_text: {generated_text}")
         # Apply the tone to the generated text
         generated_text_tone = self.apply_tone(
-            generated_text["content"], new_target_audience, new_tone, language
+            generated_text["content"], target_audience, tone, language
         )
+        # Log the generated text with tone
+        logger.info(f"generated_text_tone: {generated_text_tone}")
+        # Return the final generated text with tone
         return generated_text_tone

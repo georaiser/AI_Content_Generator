@@ -45,12 +45,12 @@ def generate_content(request: ContentGeneration):
         content = generator.generate_content(
             metadata=metadata,
             target_audience=request.target_audience,
-            tone=request.tone,
+            tone=request.new_tone,
             language=request.language,
         )
 
         # Log successful content generation
-        logger.info("Content generated successfully")
+        logger.info("Content generated successfully: {content}")
         return {"generated_content": content}
 
     except ValueError as ve:

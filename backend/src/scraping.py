@@ -103,10 +103,10 @@ class FalabellaScraper:
         product_data = {
             "title": self.get_product_name(soup),
             "price": self.get_product_price(soup),
-            "image_links": self.get_image_links(driver),
+            #"image_links": self.get_image_links(driver),
             "description": self.get_product_specifications(soup),
-            "additional_info": self.get_additional_info(soup),
             "available_sizes": self.get_available_sizes(driver),
+            "additional_info": self.get_additional_info(soup),
         }
 
         image_links = product_data.get("image_links", [])
