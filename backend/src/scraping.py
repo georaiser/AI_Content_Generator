@@ -14,8 +14,12 @@ class FalabellaScraper:
     def _get_selenium(self, url):
         # Selenium 
         options = Options()
-        options.add_argument("--headless")
+        options.add_argument("--headless")  # Run in headless mode (no UI)
+        options.add_argument("--no-sandbox")  # Disable sandboxing (useful in Docker)
+        options.add_argument("--disable-dev-shm-usage")  # Fix potential issues with Docker
+        options.add_argument("--remote-debugging-port=9222")  # Optional, if you want to debug
         driver = webdriver.Chrome(options=options)
+
         driver.get(url)
         time.sleep(1)  # Allow JS to load
         return driver
