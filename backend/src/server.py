@@ -43,9 +43,12 @@ def generate_content(request: ContentGeneration):
         generator = ContentGenerator()
         content = generator.generate_content(
             metadata=metadata,
-            target_audience=request.target_audience,
-            tone=request.tone,
-            language=request.language,
+            # target_audience=request.target_audience,
+            # tone=request.tone,
+            # language=request.language,
+            target_audience="adulto",
+            tone="chiste",
+            language="italiano"
         )
         # Log successful content generation
         logger.info("Content generated successfully")

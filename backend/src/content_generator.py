@@ -36,7 +36,7 @@ class ContentGenerator:
         reduce_prompt = PromptTemplate(
             template=template,
             input_variables=input_variables,
-            partial_variables={"format_instructions": parser.get_format_instructions()},
+            partial_variables={"format_instructions": parser.get_format_instructions()}
         )
         # Create a LLMChain with the model, the prompt and the parser
         chain = LLMChain(llm=self.llm, prompt=reduce_prompt, output_parser=parser)
@@ -54,8 +54,8 @@ class ContentGenerator:
                 "description",
                 "additional_info",
                 "available_sizes",
-                "image_description",
-            ],
+                "image_description"
+            ]
         )
         # Invoke the chain
         content_chain_invoke = content_chain.invoke(
@@ -65,51 +65,48 @@ class ContentGenerator:
                 "description": info["description"],
                 "available_sizes": info["available_sizes"],
                 "additional_info": info["additional_info"],
-                "image_description": info["image_description"],
+                "image_description": info["image_description"]
             }
         )
-
-        # Log the raw response for debugging
-        logger.info(f"Raw LLM response: {content_chain_invoke}")
-
         return content_chain_invoke["text"]["content"]
 
     def apply_tone(self, script, target_audience, tone, language):
         # Create the tone parser
         parser_tone = self.create_tone_parser()
         # Create the tone generation chain
-        generation_chain = self.create_script_chain(
+        tone_chain = self.create_script_chain(
             template=GENERATE_REFINED_INFO,
             parser=parser_tone,
             input_variables=[
                 "previous_script",
                 "target_audience",
                 "tone",
-                "language",
-            ],
+                "language"
+            ]
         )
+        print("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
         # Invoke the chain with the script, audience, tone and language
-        chain_invoke = generation_chain.invoke(
+        tone_chain_invoke = tone_chain.invoke(
             {
                 "previous_script": script,
                 "target_audience": target_audience,
                 "tone": tone,
-                "language": language,
+                "language": language
             }
         )
-        return chain_invoke
+        #logger.info(f"tone_chain_invoke______________________________: {tone_chain_invoke}")
+        print(f"tone_chain_invoke______________________________: {tone_chain_invoke}")
+        return tone_chain_invoke
 
     def generate_content(self, metadata, target_audience, tone, language):
         # Generate the initial text
         generated_text = self.generate_text(metadata)
-        # Log the generated text
-        logger.info(f"generate_content from content_generator.py: {generated_text}")
         # Apply the tone to the generated text
         # generated_text_tone = self.apply_tone(
-        #     generated_text["content"], target_audience, tone, language
+        #     generated_text, target_audience, tone, language
         # )
-        # # Log the generated text with tone
+        # Log the generated text with tone
         # logger.info(f"generated_text_tone: {generated_text_tone}")
-        # # Return the final generated text with tone
-        # return generated_text_tone
+        # Return the final generated text with tone
         return generated_text
+

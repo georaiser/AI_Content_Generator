@@ -17,7 +17,6 @@ def compute_content(payload: ContentGeneration, server_url: str):
         
         # Log the response status code and content
         logger.info(f"Status code: {response.status_code}")
-        logger.info(f"Response: {response.text}")
 
         # Raise an exception if the request fails
         response.raise_for_status()
