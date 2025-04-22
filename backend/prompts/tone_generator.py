@@ -13,8 +13,11 @@ Proceso de refinamiento:
 3. Optimiza el mensaje para mayor claridad y coherencia.
 4. Mejora la llamada a la acción (CTA) para maximizar el impacto.
 
-Importante: No incluyas emojis en el contenido refinado.
+Importante: 
+- No incluyas emojis en el contenido refinado.
+- SOLAMENTE devuelve el formato JSON, sin ningún texto explicativo antes o después.
+- No incluyas comentarios, explicaciones o cualquier otro texto fuera del JSON.
 
-Un guion optimizado y mejorado, alineado con el tono, idioma y público objetivo especificados. La respuesta debe seguir este formato:
+La respuesta debe seguir EXACTAMENTE este formato JSON y nada más:
 {format_instructions}
 """

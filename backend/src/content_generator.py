@@ -26,10 +26,12 @@ class ContentGenerator:
     def create_parser(self):
         """Create a JsonOutputParser for ContentGenerationScript"""
         return JsonOutputParser(pydantic_object=ContentGenerationScript)
-
+    
     def create_tone_parser(self):
         """Create a JsonOutputParser for ToneGenerationScript"""
-        return JsonOutputParser(pydantic_object=ToneGenerationScript)
+        parser = JsonOutputParser(pydantic_object=ToneGenerationScript)
+        print(f"Format instructions: {parser.get_format_instructions()}")
+        return parser
 
     def create_script_chain(self, template, parser, input_variables):
         """Create a PromptTemplate with the template, input_variables and format_instructions"""
@@ -70,6 +72,7 @@ class ContentGenerator:
         )
         return content_chain_invoke["text"]["content"]
 
+
     def apply_tone(self, script, target_audience, tone, language):
         # Create the tone parser
         parser_tone = self.create_tone_parser()
@@ -84,8 +87,10 @@ class ContentGenerator:
                 "language"
             ]
         )
-        print("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
-        # Invoke the chain with the script, audience, tone and language
+        # Log the type and content of the tone chain
+        logger.info(f"Type of tone_chain: {type(tone_chain)}")
+        logger.info(f"Value of tone_chain: {tone_chain}")
+        # Invoke the chain
         tone_chain_invoke = tone_chain.invoke(
             {
                 "previous_script": script,
@@ -94,19 +99,24 @@ class ContentGenerator:
                 "language": language
             }
         )
-        #logger.info(f"tone_chain_invoke______________________________: {tone_chain_invoke}")
-        print(f"tone_chain_invoke______________________________: {tone_chain_invoke}")
-        return tone_chain_invoke
+        
+        # Print the type and content of the response
+        print(f"Type of tone_chain_invoke: {type(tone_chain_invoke)}")
+        print(f"Value of tone_chain_invoke: {tone_chain_invoke}")
+        
+        return tone_chain_invoke["text"]["content"]
 
+        
     def generate_content(self, metadata, target_audience, tone, language):
+
         # Generate the initial text
         generated_text = self.generate_text(metadata)
         # Apply the tone to the generated text
-        # generated_text_tone = self.apply_tone(
-        #     generated_text, target_audience, tone, language
-        # )
+        generated_text_tone = self.apply_tone(
+            generated_text, target_audience, tone, language
+        )
         # Log the generated text with tone
         # logger.info(f"generated_text_tone: {generated_text_tone}")
         # Return the final generated text with tone
-        return generated_text
+        return generated_text_tone
 
