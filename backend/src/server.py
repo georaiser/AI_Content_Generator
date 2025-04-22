@@ -37,7 +37,7 @@ def generate_content(request: ContentGeneration):
             raise ValueError("No se pudo extraer metadata válida del producto.")
 
         # Log the scraped metadata
-        logger.info(f"Metadata scraped: {metadata}")
+        # logger.info(f"Metadata scraped: {metadata}")
 
         # Generate content using the ContentGenerator
         generator = ContentGenerator()
@@ -47,9 +47,8 @@ def generate_content(request: ContentGeneration):
             tone=request.tone,
             language=request.language,
         )
-
         # Log successful content generation
-        logger.info("Content generated successfully: {content}")
+        logger.info("Content generated successfully")
         return {"generated_content": content}
 
     except ValueError as ve:

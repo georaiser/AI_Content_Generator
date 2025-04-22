@@ -6,7 +6,7 @@ backend = subprocess.Popen(["uvicorn", "backend.src.server:app", "--reload", "--
 
 frontend = subprocess.Popen([
     "streamlit", "run", "frontend/src/ui.py",
-    "--server.port", "8510"
+    "--server.port", "8502"
 ], env={**os.environ, "PYTHONPATH": os.getcwd(), "API_URL": "http://localhost:8000/content_generator"})
 
 backend.wait()

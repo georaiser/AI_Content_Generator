@@ -52,8 +52,8 @@ class ContentGenerator:
                 "title",
                 "price",
                 "description",
-                "available_sizes",
                 "additional_info",
+                "available_sizes",
                 "image_description",
             ],
         )
@@ -68,7 +68,11 @@ class ContentGenerator:
                 "image_description": info["image_description"],
             }
         )
-        return content_chain_invoke
+
+        # Log the raw response for debugging
+        logger.info(f"Raw LLM response: {content_chain_invoke}")
+
+        return content_chain_invoke["text"]["content"]
 
     def apply_tone(self, script, target_audience, tone, language):
         # Create the tone parser
@@ -99,7 +103,7 @@ class ContentGenerator:
         # Generate the initial text
         generated_text = self.generate_text(metadata)
         # Log the generated text
-        logger.info(f"generated_text: {generated_text}")
+        logger.info(f"generate_content from content_generator.py: {generated_text}")
         # Apply the tone to the generated text
         # generated_text_tone = self.apply_tone(
         #     generated_text["content"], target_audience, tone, language
