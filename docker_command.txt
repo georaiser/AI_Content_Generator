@@ -1,0 +1,8 @@
+docker image ls
+docker system prune -f
+docker stop $(docker ps -q)
+docker rmi $(docker images -a -q)
+docker compose up -d --build
+docker compose logs backend
+docker compose logs frontend
+docker network inspect my_network

@@ -1,5 +1,5 @@
 import requests
-from frontend.models.content_generation_models import ContentGeneration
+from models.content_generation_models import ContentGeneration
 import logging
 # Configure logging
 logging.basicConfig(level=logging.INFO)

@@ -1,8 +1,8 @@
 from fastapi import FastAPI, HTTPException
 import logging
-from backend.src.content_generator import ContentGenerator
-from backend.models.content_generation_models import ContentGeneration
-from backend.src.scraping import FalabellaScraper
+from src.content_generator import ContentGenerator
+from models.content_generation_models import ContentGeneration
+from src.scraping import FalabellaScraper
 
 # Configurar logs
 logging.basicConfig(level=logging.INFO)

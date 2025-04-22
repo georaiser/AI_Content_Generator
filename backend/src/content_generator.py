@@ -2,10 +2,10 @@ from dotenv import load_dotenv
 from langchain_core.output_parsers import JsonOutputParser
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-from backend.prompts.tone_generator import GENERATE_REFINED_INFO
-from backend.prompts.content_generation_prompts import GENERATE_INFO
-from backend.src.llm import GroqModelHandler
-from backend.models.content_generation_models import (
+from prompts.tone_generator import GENERATE_REFINED_INFO
+from prompts.content_generation_prompts import GENERATE_INFO
+from src.llm import GroqModelHandler
+from models.content_generation_models import (
     ContentGenerationScript,
     ToneGenerationScript,
 )

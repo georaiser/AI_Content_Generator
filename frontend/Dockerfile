@@ -7,9 +7,6 @@ WORKDIR /frontend
 COPY requirements.txt ./
 RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-# Set PYTHONPATH to recognize `src` inside frontend
-ENV PYTHONPATH=/app/frontend
-
 # Copiar todo el código fuente
 COPY . .
 

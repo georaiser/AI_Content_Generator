@@ -5,7 +5,7 @@ import math
 from io import BytesIO
 from PIL import Image
 from dotenv import load_dotenv
-from backend.src.llm import GroqModelHandler
+from src.llm import GroqModelHandler
 
 # load .env
 load_dotenv()

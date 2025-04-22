@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-from backend.src.image_describer import ImageGridDescriber
+from src.image_describer import ImageGridDescriber
 
 # uvicorn backend.src.server:app --reload --port 8000
 

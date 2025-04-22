@@ -21,8 +21,6 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 # Set environment variable for Chromium and Chromedriver path
 ENV PATH="/usr/lib/chromium/:${PATH}"
-# Set PYTHONPATH to recognize `src` inside backend
-ENV PYTHONPATH=/app/backend
 
 # Copiar el resto de los archivos
 COPY . .
