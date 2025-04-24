@@ -22,7 +22,7 @@ def compute_content(payload: ContentGeneration, server_url: str):
         response.raise_for_status()
         
         # Extract and return the generated content from the response
-        generated_content = response.json()
+        generated_content, encoded_image = response.json()
         
         return {
             "url": payload.url,
@@ -30,7 +30,7 @@ def compute_content(payload: ContentGeneration, server_url: str):
             "tone": payload.tone,
             "language": payload.language,
             "script": generated_content.get("generated_content", "No content generated")
-        }
+        }, encoded_image
     
     except requests.exceptions.RequestException as e:
         # Handle request exceptions and return an error message

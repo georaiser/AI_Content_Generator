@@ -21,7 +21,7 @@ def health_check():
     """Endpoint to check the health of the API"""
     return {"status": "ok"}
 
-@app.post("/content_generator")
+@app.post("/content_generator")   # Endpoint to generate content called in frontend by ui.py
 def generate_content(request: ContentGeneration):
     """Generate content based on metadata scraped from the given URL"""
     try:
@@ -31,6 +31,7 @@ def generate_content(request: ContentGeneration):
         # Scrape metadata using FalabellaScraper
         scraper = FalabellaScraper()
         metadata = scraper.scrape(request.url)
+        encoded_image = metadata["encode_concatenated_image"] 
 
         # Validate if metadata is valid
         if not metadata or not isinstance(metadata, dict):
@@ -49,7 +50,8 @@ def generate_content(request: ContentGeneration):
         )
         # Log successful content generation
         logger.info("Content generated successfully")
-        return {"generated_content": content}
+        generated_content = {"generated_content": content}
+        return generated_content, encoded_image
 
     except ValueError as ve:
         # Handle ValueError and log the error

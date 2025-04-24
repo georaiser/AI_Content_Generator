@@ -8,8 +8,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 from src.image_describer import ImageGridDescriber
 
-# uvicorn backend.src.server:app --reload --port 8000
-
 class FalabellaScraper:
         
     def _get_selenium(self, url):
@@ -94,8 +92,9 @@ class FalabellaScraper:
 
     def get_image_description(self, image_links):
         concatenated_image = ImageGridDescriber().concatenate_images_square(image_links)
+        encode_concatenated_image = ImageGridDescriber().encode_image(concatenated_image)
         image_description = ImageGridDescriber().get_image_description(concatenated_image)
-        return image_description
+        return image_description, encode_concatenated_image
 
     def scrape(self, url):
         soup = self._get_soup(url)
@@ -112,10 +111,12 @@ class FalabellaScraper:
 
         image_links = product_data.get("image_links", [])
         if image_links:
-            image_description = self.get_image_description(image_links)
+            image_description, encode_concatenated_image = self.get_image_description(image_links)
             product_data["image_description"] = image_description
+            product_data["encode_concatenated_image"] = encode_concatenated_image
         else:
             product_data["image_description"] = None
+            product_data["encode_concatenated_image"] = None
 
         # selenium driver quit
         driver.quit()
