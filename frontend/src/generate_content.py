@@ -12,7 +12,7 @@ def compute_content(payload: ContentGeneration, server_url: str):
                 server_url,
                 json=payload.model_dump(),  # Convert the Pydantic model to a dictionary
                 headers={"Content-Type": "application/json"},
-                timeout=15,
+                timeout=20,
             )
         
         # Log the response status code and content
