@@ -123,7 +123,7 @@ class FalabellaScraper:
         return product_data
 
 def __main__():
-    url = "https://www.falabella.com.pe/falabella-pe/product/883158187/Polo-University-Club-Liso-Manga-Corta-100-Algodon/883158198"
+    url = "https://www.falabella.com.pe/falabella-pe/product/883343187/Casaca-Casual-Mujer-Sybilla/883343197"
     scraper = FalabellaScraper()
     product_data = scraper.scrape(url)
 
