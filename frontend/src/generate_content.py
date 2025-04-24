@@ -23,9 +23,8 @@ def compute_content(payload: ContentGeneration, server_url: str):
         
         # Extract and return the generated content from the response
         generated_content, encoded_image = response.json()
-
-        print(encoded_image)
         
+        logger.info(f"encoded: {encoded_image}")
         return {
             "url": payload.url,
             "audience": payload.target_audience,
