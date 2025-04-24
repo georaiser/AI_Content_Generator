@@ -1,3 +1,6 @@
+#### Project carried out for the Artificial Intelligence course at https://bootcampxperience.com/
+
+#
 # AI-Powered Content Generation Tool
 
 ## Overview
